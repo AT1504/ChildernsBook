@@ -1,0 +1,20 @@
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent">
+
+    <fragment
+        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        class="com.isisruby.childrensbook.AlphabetListFragment"
+        android:id="@+id/menu"/>
+    <fragment
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        class="com.isisruby.childrensbook.OutputFragment"
+        android:id="@+id/output"/>
+
+</LinearLayout>
+
