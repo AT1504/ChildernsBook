@@ -1,8 +1,6 @@
 package com.isisruby.childrensbook;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +24,10 @@ public class OutputFragment extends Fragment {
     }
 
     public void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getFragmentManager();
+/*        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment, fragment.toString());
         fragmentTransaction.addToBackStack(fragment.toString());
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 }

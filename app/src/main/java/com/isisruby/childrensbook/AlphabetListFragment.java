@@ -24,11 +24,11 @@ public class AlphabetListFragment extends ListFragment implements FragmentChange
     }
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
-            OutputFragment outputFragment = new OutputFragment();
+            //OutputFragment outputFragment = new OutputFragment();
             //Bundle args = new Bundle();
             //args.putInt(word[position], position);
             //outputFragment.setArguments(args);
-            replaceFragment(outputFragment, R.id.fragment_container);
+            //replaceFragment(outputFragment, R.id.fragment_container);
     }
 
     @Override

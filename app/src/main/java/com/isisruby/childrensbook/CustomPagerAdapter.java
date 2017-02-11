@@ -1,41 +1,17 @@
 package com.isisruby.childrensbook;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
+/**
+ * Created by Pipu on 11-Feb-17.
+ */
+public class CustomPagerAdapter extends FragmentPagerAdapter {
 
-public class MainActivity extends AppCompatActivity {
-    FragmentPagerAdapter adapterViewPager;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
-
-        }
-    }
-/*    private void ShowFragment(Fragment fragment, FragmentTransaction transaction){
-        //transaction.replace(R.id.fragment_container, fragment);
-        transaction.hide(mCurrentFragment);
-        transaction.show(fragment);
-        transaction.addToBackStack(null);
-        // Commit the transaction
-        transaction.commit();
-        mCurrentFragment = fragment;
-    }*/
-
-
-    class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        public CustomPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
 
@@ -65,7 +41,4 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return "Page " + position;
         }
-
-    }
-
-
+}
