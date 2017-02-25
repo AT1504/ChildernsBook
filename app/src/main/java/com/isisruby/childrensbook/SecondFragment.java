@@ -13,8 +13,8 @@ public class SecondFragment extends Fragment {
     private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static FirstFragment newInstance(int page, String title) {
-        FirstFragment fragmentFirst = new FirstFragment();
+    public static SecondFragment newInstance(int page, String title) {
+        SecondFragment fragmentFirst = new SecondFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
@@ -32,8 +32,7 @@ public class SecondFragment extends Fragment {
 
     // Inflate the view for the fragment based on layout XML
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_second, container, false);
         TextView tvLabel = (TextView) view.findViewById(R.id.mila);
         tvLabel.setText(page + " -- " + title);

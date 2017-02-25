@@ -1,9 +1,6 @@
 package com.isisruby.childrensbook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,34 +8,37 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class AlphabetListFragment extends ListFragment implements FragmentChangeListener {
+public class AlphabetListFragment extends Fragment {
+    // Store instance variables
+    private String title;
+    private int page;
     String[] alphabet = new String[] { "A","B","C"};
     String[] word = new String[]{"Apple", "Boat", "Cat"};
+
+
+    // newInstance constructor for creating fragment with arguments
+    public static AlphabetListFragment newInstance(int page, String title) {
+        AlphabetListFragment fragmentFirst = new AlphabetListFragment();
+        Bundle args = new Bundle();
+        args.putInt("someInt", page);
+        args.putString("someTitle", title);
+        fragmentFirst.setArguments(args);
+        return fragmentFirst;
+    }
+    // Store instance variables based on arguments passed
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.menu_fragment, viewGroup, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        page = getArguments().getInt("someInt", 0);
+        title = getArguments().getString("someTitle");
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view =inflater.inflate(R.layout.menu_fragment, container, false);
+        ListView listView = (ListView)view.findViewById(R.id.list);
         ArrayAdapter adapter = new ArrayAdapter(getActivity(),
                 android.R.layout.simple_list_item_activated_1, alphabet);
-        setListAdapter(adapter);
+        listView.setAdapter(adapter);
         return view;
-    }
-    @Override
-    public void onListItemClick(ListView listView, View view, int position, long id) {
-            //OutputFragment outputFragment = new OutputFragment();
-            //Bundle args = new Bundle();
-            //args.putInt(word[position], position);
-            //outputFragment.setArguments(args);
-            //replaceFragment(outputFragment, R.id.fragment_container);
-    }
-
-    @Override
-    public void replaceFragment(Fragment newfragment, int mContainerId) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
-        fragmentTransaction.replace(mContainerId, newfragment, newfragment.toString());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-
     }
 }

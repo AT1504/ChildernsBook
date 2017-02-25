@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 public class FirstFragment extends Fragment {
     // Store instance variables
@@ -35,8 +35,7 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
-        TextView tvLabel = (TextView) view.findViewById(R.id.word);
-        tvLabel.setText(page + " -- " + title);
+        ImageView tvLabel = (ImageView) view.findViewById(R.id.word);
         return view;
     }
 }
