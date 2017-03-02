@@ -55,6 +55,12 @@
 
     </LinearLayout>
 
+    <Spinner
+        android:id="@+id/citys_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/customActionBarDropDownStyle"/>
+
     <TextView
         android:layout_margin="10dp"
         android:id="@+id/textUserSettings"

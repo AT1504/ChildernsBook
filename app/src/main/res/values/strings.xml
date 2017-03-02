@@ -18,5 +18,16 @@
     <string name="pref_user_profile">User Profile</string>
     <string name="pref_update_setting">Update Settings</string>
 
+    <string-array name="citys_array">
+        <item>כרמיאל</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
 
 </resources>

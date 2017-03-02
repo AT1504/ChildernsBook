@@ -6,21 +6,26 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
     public EditText TaxYear;
+    public Spinner spinner;
 
     private static final int RESULT_SETTINGS = 1;
 
@@ -50,6 +55,20 @@ public class MainActivity extends Activity {
             }
         });
         displayUserSettings();
+        CityChooserBySpinner();
+    }
+
+    public void CityChooserBySpinner(){
+        spinner = (Spinner) findViewById(R.id.citys_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.citys_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setBackgroundColor(getResources().getColor(R.color.accent_material_dark));
+        spinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -122,6 +141,20 @@ public class MainActivity extends Activity {
         textViewSetting.setText(settings);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // implementation for the spinner
+        // Spinner view value
+        String city = parent.getItemAtPosition(position).toString();
+        Log.i("city",city);
+        String text = spinner.getSelectedItem().toString();
+        Log.i("text",text);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // another implementation for the spinner
+    }
 }
 /*public class MainActivity extends AppCompatActivity implements Button.OnClickListener{
     //FragmentPagerAdapter adapterViewPager;

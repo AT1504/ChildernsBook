@@ -5,7 +5,7 @@
     </style>
 
     <style name="InputNumber" parent="@android:style/TextAppearance.Medium">
-        <item name="android:inputType">number</item>
+        <item name="android:inputType">numberDecimal</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">20sp</item>
@@ -16,6 +16,10 @@
         <item name="android:textColor">@android:color/black</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="customActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.ListView" >
+
     </style>
 
 </resources>
