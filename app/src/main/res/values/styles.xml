@@ -18,8 +18,8 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="customActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.ListView" >
-
+    <style name="DropDownStyle" parent="@android:style/Widget.ListView.DropDown">
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 </resources>

@@ -1,21 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/_AppTheme"
+    android:id="@+id/m_layout"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpPager"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <EditText
+        style="@style/InputNumber"
+        android:id="@+id/tax_year_txt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v4.view.PagerTabStrip
-            android:id="@+id/pager_header"
-            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tax_year_editbox"
+        android:layout_margin="10dp"/>
+    <EditText
+        style="@style/InputNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/salary_editbox"
+        android:layout_margin="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_margin="10dp">
+        <EditText
+            style="@style/InputNumber"
+            android:id="@+id/NekudotZikui"
+            android:hint="הכנס את נקודות הזיכוי"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp" />
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="או"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:textColor="@android:color/black"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:padding="5dp"
+            android:text="@string/btn_nekudot_zikui"/>
 
-    </android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        android:weightSum="1"
+        android:layout_weight="0.19">
+        <AutoCompleteTextView
+            android:id="@+id/citys_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:maxLines="1"
+            android:completionThreshold="1"
+            android:imeOptions="actionDone"
+            style="@style/DropDownStyle"
+            android:layout_weight="0.5" />
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:text="@string/user_city"
+            android:layout_weight="0.42"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/textUserSettings"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:padding="20dp"
+        tools:context=".MainActivity"/>
+
+    <Button
+        android:id="@+id/mas_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:text="@string/btn_chashev_mas_achnasa" />
 </LinearLayout>
-
