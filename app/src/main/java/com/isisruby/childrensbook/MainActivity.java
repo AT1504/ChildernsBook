@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +26,9 @@ import java.util.Locale;
 
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
     public EditText TaxYear;
+    public EditText Bruto;
     public AutoCompleteTextView CitySpinner;
+    public Button MasCalcBtn;
 
     private static final int RESULT_SETTINGS = 1;
 
@@ -36,6 +38,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         setContentView(R.layout.activity_main);
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.m_layout);
         mLayout.requestFocus();
+        Bruto = (EditText) findViewById(R.id.bruto_edittxt);
 
         TaxYear = (EditText) findViewById(R.id.tax_year_txt);
         TaxYear.setFocusable(false);
@@ -49,18 +52,42 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                                        }
                                    }
         );
-        //Button btnSettings=(Button)findViewById(R.id.buttonSettings);
+        MasCalcBtn=(Button)findViewById(R.id.mas_calc);
+        MasCalcBtn.setOnClickListener(new View.OnClickListener() {
 
-        // start the UserSettingActivity when user clicks on Button
-//        btnSettings.setOnClickListener(new View.OnClickListener() {
-//
-//            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), UserSettingActivity.class);
-//                startActivityForResult(i, RESULT_SETTINGS);
-//            }
-//        });
+            public void onClick(View v) {
+                Log.i("MasResult", String.valueOf(CalculateMas()));
+            }
+        });
         displayUserSettings();
         CityChooserBySpinner();
+    }
+
+    private Double CalculateMas() {
+        if (TaxYear!=null){
+            String myFormat = "yyyy";
+            SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+            int TaxYearInput = Integer.parseInt(dateFormat.format(myCalendar.getTime()));
+        }
+
+        double BrutoInput = Double.parseDouble(this.Bruto.getText().toString());
+        double resultMas=0;
+        double[] MadregotMas = {4390,7810,11720,16840,36260,0};
+        double[] ShiurMas = {10,14,21,28,32,47};
+
+        for (int i = 0; i < 5; i++) {
+            if (BrutoInput > MadregotMas[i] && i!=5) {
+                if (i!=0) {resultMas += (MadregotMas[i]-MadregotMas[i-1])*ShiurMas[i]/100;}
+                else {resultMas += (MadregotMas[0])*ShiurMas[i]/100;}
+            } else if(i!=0){
+                resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;
+                break;
+            } else{
+                resultMas += BrutoInput*ShiurMas[0]/100;
+                break;
+            }
+        }
+        return resultMas;
     }
 
     public void CityChooserBySpinner() {
@@ -105,7 +132,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         return true;
     }
 
-    Calendar myCalendar = Calendar.getInstance();
+    public Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -122,9 +149,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
     private void updateLabel() {
 
-        String myFormat = "dd/MM/yy";
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
         TaxYear.setText(sdf.format(myCalendar.getTime()));
     }
 
