@@ -12,5 +12,37 @@
         <item name="30">30</item>
         <item name="0">0</item>
     </string-array>
+    <integer-array name="madregat_mas_2017">
+        <item>6220</item>
+        <item>8920</item>
+        <item>14320</item>
+        <item>19900</item>
+        <item>41410</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="shiur_mas_2017">
+        <item>10</item>
+        <item>14</item>
+        <item>20</item>
+        <item>31</item>
+        <item>35</item>
+        <item>47</item>
+    </integer-array>
+    <integer-array name="madregat_mas_2016">
+        <item>5220</item>
+        <item>8920</item>
+        <item>13860</item>
+        <item>19800</item>
+        <item>41410</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="shiur_mas_2016">
+        <item>10</item>
+        <item>14</item>
+        <item>21</item>
+        <item>31</item>
+        <item>34</item>
+        <item>48</item>
+    </integer-array>
 
 </resources>

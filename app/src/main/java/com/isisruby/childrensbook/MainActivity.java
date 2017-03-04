@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         setContentView(R.layout.activity_main);
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.m_layout);
         mLayout.requestFocus();
+        Toast mytoast = new Toast(this);
         Bruto = (EditText) findViewById(R.id.bruto_edittxt);
 
         TaxYear = (EditText) findViewById(R.id.tax_year_txt);
@@ -64,16 +66,35 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     }
 
     private Double CalculateMas() {
+        int TaxYearInput = 0;
+        int[] MadregotMas = {0,0,0,0,0,0};
+        int[] ShiurMas = {0,0,0,0,0,0};
+        double BrutoInput=0;
+
         if (TaxYear!=null){
             String myFormat = "yyyy";
             SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
-            int TaxYearInput = Integer.parseInt(dateFormat.format(myCalendar.getTime()));
+            TaxYearInput = Integer.parseInt(dateFormat.format(myCalendar.getTime()));
         }
 
-        double BrutoInput = Double.parseDouble(this.Bruto.getText().toString());
+        if (Bruto.length() == 0 || Bruto.equals("") || Bruto == null){
+            Toast.makeText(MainActivity.this, "נא, הכנס את גובה המשכורת שלך",
+                    Toast.LENGTH_LONG).show();
+        }else{
+            BrutoInput = Double.parseDouble(this.Bruto.getText().toString());
+        }
+
         double resultMas=0;
-        double[] MadregotMas = {4390,7810,11720,16840,36260,0};
-        double[] ShiurMas = {10,14,21,28,32,47};
+        if (TaxYearInput==2017){
+            MadregotMas = getResources().getIntArray(R.array.madregat_mas_2017);
+            ShiurMas = getResources().getIntArray(R.array.shiur_mas_2017);
+        }
+        else if (TaxYearInput==2016){
+            MadregotMas = getResources().getIntArray(R.array.madregat_mas_2016);
+            ShiurMas = getResources().getIntArray(R.array.shiur_mas_2016);
+        }
+        else{
+        }
 
         for (int i = 0; i < 5; i++) {
             if (BrutoInput > MadregotMas[i] && i!=5) {
