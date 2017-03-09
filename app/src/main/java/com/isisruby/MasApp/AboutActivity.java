@@ -1,11 +1,8 @@
-package com.isisruby.childrensbook;
+package com.isisruby.MasApp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by Pipu on 03-Mar-17.

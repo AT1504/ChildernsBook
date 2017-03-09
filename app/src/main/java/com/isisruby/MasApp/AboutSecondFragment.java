@@ -1,20 +1,20 @@
-package com.isisruby.childrensbook;
+package com.isisruby.MasApp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-public class AboutFirstFragment extends Fragment {
+public class AboutSecondFragment extends Fragment {
     // Store instance variables
     private String title;
     private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static AboutFirstFragment newInstance(int page, String title) {
-        AboutFirstFragment fragmentFirst = new AboutFirstFragment();
+    public static AboutSecondFragment newInstance(int page, String title) {
+        AboutSecondFragment fragmentFirst = new AboutSecondFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
@@ -32,10 +32,10 @@ public class AboutFirstFragment extends Fragment {
 
     // Inflate the view for the fragment based on layout XML
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.about_fragment_first, container, false);
-        ImageView tvLabel = (ImageView) view.findViewById(R.id.word);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.about_fragment_second, container, false);
+        TextView tvLabel = (TextView) view.findViewById(R.id.mila);
+        tvLabel.setText(page + " -- " + title);
         return view;
     }
 }
