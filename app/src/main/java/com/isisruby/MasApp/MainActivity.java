@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
     public EditText TaxYear;
     public EditText Bruto;
     public AutoCompleteTextView CitySpinner;
@@ -157,7 +157,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the CitySpinner
         CitySpinner.setAdapter(adapter);
-        CitySpinner.setOnItemSelectedListener(this);
+        CitySpinner.setOnItemClickListener(this);
         CitySpinner.setSingleLine();
     }
 
@@ -231,7 +231,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         JSONObject json_obj;
         String city = parent.getItemAtPosition(position).toString();
         try {
@@ -241,17 +241,13 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                     uptownRate = json_obj.getDouble("rate_2016");
                     uptownCeiling = json_obj.getDouble("ceiling_2016");
                     Log.i("uptown:","["+uptownRate+"],["+uptownCeiling+"]");
+                    break;
                 }
             }
         }catch (JSONException e1) {
             e1.printStackTrace();
         }
-        Log.i("city", city);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // another implementation for the CitySpinner
+        Log.i("json_arr - length", ""+json_arr.length());
     }
 }
 
