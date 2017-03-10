@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     public Button MasCalcBtn;
     private final ArrayList<String> CITIES = new ArrayList<>();
     private JSONArray json_arr;
-    private double uptownRate, uptownCeiling;
+    private double uptownRate=0.0, uptownCeiling=0.0;
     private static final int RESULT_SETTINGS = 1;
 
     @Override
@@ -48,7 +48,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         setContentView(R.layout.activity_main);
         LinearLayout mLayout = (LinearLayout) findViewById(R.id.m_layout);
         mLayout.requestFocus();
-        Toast mytoast = new Toast(this);
         Bruto = (EditText) findViewById(R.id.bruto_edittxt);
 
         TaxYear = (EditText) findViewById(R.id.tax_year_txt);
@@ -87,7 +86,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     }
 
     public String readJSONFromAsset() {
-        String json = null;
+        String json;
         try {
             InputStream is = getAssets().open("up_towns_israel.json");
             int size = is.available();
@@ -133,17 +132,24 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         else{
         }
 
-        for (int i = 0; i < 5; i++) {
-            if (BrutoInput > MadregotMas[i] && i!=5) {
-                if (i!=0) {resultMas += (MadregotMas[i]-MadregotMas[i-1])*ShiurMas[i]/100;}
-                else {resultMas += (MadregotMas[0])*ShiurMas[i]/100;}
-            } else if(i!=0){
+        for (int i = 0; i < 6; i++) {
+            if (BrutoInput > MadregotMas[i]) {
+                if (i!=0 && i!=5) {resultMas += (MadregotMas[i]-MadregotMas[i-1])*ShiurMas[i]/100;}
+                else if (i==0) {resultMas += (MadregotMas[0])*ShiurMas[i]/100;}
+                else if (BrutoInput > MadregotMas[5] && i==5) {resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;}
+            } else if(BrutoInput < MadregotMas[i] && i!=0){
                 resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;
                 break;
-            } else{
-                resultMas += BrutoInput*ShiurMas[0]/100;
+            } else if (BrutoInput < MadregotMas[0]){
+                resultMas = BrutoInput*ShiurMas[0]/100;
                 break;
             }
+        }
+        // Extra tax for High Income
+        double ExtraMadrega = Double.valueOf(getResources().getString(R.string.extra_income_madrega));
+        if (BrutoInput>ExtraMadrega) {
+            double ExtraShiur = Double.valueOf(getResources().getString(R.string.extra_income_shiur));
+            resultMas += (BrutoInput-ExtraMadrega)*ExtraShiur;
         }
         return resultMas;
     }
@@ -230,6 +236,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         textViewSetting.setText(settings);
     }
 
+    // AutocompleteEditText Methods
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         JSONObject json_obj;

@@ -18,7 +18,7 @@
         <item>14320</item>
         <item>19900</item>
         <item>41410</item>
-        <item>0</item>
+        <item>41410</item>
     </integer-array>
     <integer-array name="shiur_mas_2017">
         <item>10</item>
@@ -34,7 +34,7 @@
         <item>13860</item>
         <item>19800</item>
         <item>41410</item>
-        <item>0</item>
+        <item>41410</item>
     </integer-array>
     <integer-array name="shiur_mas_2016">
         <item>10</item>
