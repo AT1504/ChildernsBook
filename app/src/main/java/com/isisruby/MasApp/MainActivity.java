@@ -21,7 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -30,7 +37,9 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     public EditText Bruto;
     public AutoCompleteTextView CitySpinner;
     public Button MasCalcBtn;
-
+    private final ArrayList<String> CITIES = new ArrayList<>();
+    private JSONArray json_arr;
+    private double uptownRate, uptownCeiling;
     private static final int RESULT_SETTINGS = 1;
 
     @Override
@@ -62,7 +71,35 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
             }
         });
         displayUserSettings();
-        CityChooserBySpinner();
+        JSONObject json_obj;
+        String name;
+        try {
+            json_arr  = new JSONArray(readJSONFromAsset());
+            for (int i = 0; i < json_arr.length(); i++) {
+                json_obj = json_arr.getJSONObject(i);
+                name = json_obj.getString("city_name");
+                CITIES.add(name);
+            }
+        }catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+        CityChooserByAutoComplete();
+    }
+
+    public String readJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("up_towns_israel.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
     private Double CalculateMas() {
@@ -111,7 +148,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         return resultMas;
     }
 
-    public void CityChooserBySpinner() {
+    public void CityChooserByAutoComplete() {
         CitySpinner = (AutoCompleteTextView) findViewById(R.id.citys_spinner);
         // Create an ArrayAdapter using the string array and a default CitySpinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -123,9 +160,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         CitySpinner.setOnItemSelectedListener(this);
         CitySpinner.setSingleLine();
     }
-    private static final String[] CITIES = new String[] {
-            "אשדות יעקב", "ariel", "יונתן", "עזוז", "פקיעין"
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -198,9 +232,20 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // implementation for the CitySpinner
-        // Spinner view value
+        JSONObject json_obj;
         String city = parent.getItemAtPosition(position).toString();
+        try {
+            for (int i = 0; i < json_arr.length(); i++) {
+                json_obj = json_arr.getJSONObject(i);
+                if (json_obj.getString("city_name") == city){
+                    uptownRate = json_obj.getDouble("rate_2016");
+                    uptownCeiling = json_obj.getDouble("ceiling_2016");
+                    Log.i("uptown:","["+uptownRate+"],["+uptownCeiling+"]");
+                }
+            }
+        }catch (JSONException e1) {
+            e1.printStackTrace();
+        }
         Log.i("city", city);
     }
 
