@@ -36,10 +36,10 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     public EditText TaxYear;
     public EditText Bruto;
     public AutoCompleteTextView CitySpinner;
-    public Button MasCalcBtn;
     private final ArrayList<String> CITIES = new ArrayList<>();
     private JSONArray json_arr;
     private double uptownRate=0.0, uptownCeiling=0.0;
+
     private static final int RESULT_SETTINGS = 1;
 
     @Override
@@ -62,7 +62,8 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                                        }
                                    }
         );
-        MasCalcBtn=(Button)findViewById(R.id.mas_calc);
+        Button MasCalcBtn;
+        MasCalcBtn = (Button)findViewById(R.id.mas_calc);
         MasCalcBtn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -129,14 +130,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
             MadregotMas = getResources().getIntArray(R.array.madregat_mas_2016);
             ShiurMas = getResources().getIntArray(R.array.shiur_mas_2016);
         }
-        else{
-        }
 
         for (int i = 0; i < 6; i++) {
             if (BrutoInput > MadregotMas[i]) {
                 if (i!=0 && i!=5) {resultMas += (MadregotMas[i]-MadregotMas[i-1])*ShiurMas[i]/100;}
                 else if (i==0) {resultMas += (MadregotMas[0])*ShiurMas[i]/100;}
-                else if (BrutoInput > MadregotMas[5] && i==5) {resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;}
+                else if (BrutoInput > MadregotMas[i] && i==5) {resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;}
             } else if(BrutoInput < MadregotMas[i] && i!=0){
                 resultMas += (BrutoInput-MadregotMas[i-1])*ShiurMas[i]/100;
                 break;
@@ -182,8 +181,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
             case R.id.action_settings:
                 i = new Intent(this, UserSettingActivity.class);
-                //startActivityForResult(i, RESULT_SETTINGS);
-                startActivity(i);
+                startActivityForResult(i, RESULT_SETTINGS);
                 break;
             case R.id.action_about:
                 i = new Intent(this, AboutActivity.class);
@@ -226,14 +224,14 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     }
 
     private void displayUserSettings() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String settings = "";
-        settings = settings + "Password: " + sharedPrefs.getString("prefUserPassword", "NOPASSWORD");
-        settings = settings + "\nRemind For Update:" + sharedPrefs.getBoolean("prefLockScreen", false);
-        settings = settings + "\nUpdate Frequency: "
-                + sharedPrefs.getString("prefUpdateFrequency", "NOUPDATE");
-        TextView textViewSetting = (TextView) findViewById(R.id.textUserSettings);
-        textViewSetting.setText(settings);
+//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+//        String settings = "";
+//        settings = settings + "Password: " + sharedPrefs.getString("prefUserPassword", "NOPASSWORD");
+//        settings = settings + "\nRemind For Update:" + sharedPrefs.getBoolean("prefLockScreen", false);
+//        settings = settings + "\nUpdate Frequency: "
+//                + sharedPrefs.getString("prefUpdateFrequency", "NOUPDATE");
+//        TextView textViewSetting = (TextView) findViewById(R.id.textUserSettings);
+//        textViewSetting.setText(settings);
     }
 
     // AutocompleteEditText Methods

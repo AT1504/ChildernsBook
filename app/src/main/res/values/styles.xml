@@ -1,25 +1,41 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo">
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
     </style>
 
-    <style name="InputNumber" parent="@android:style/TextAppearance.Medium">
+    <style name="InputNumber" parent="android:Widget.EditText">
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/button_text_color</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:background">#868f9c</item>
     </style>
 
-    <style name="InputText" parent="@android:style/TextAppearance.Medium">
+    <style name="InputText" parent="android:Widget.EditText">
         <item name="android:inputType">textNoSuggestions</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/button_text_color</item>
         <item name="android:typeface">sans</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:background">#868f9c</item>
     </style>
 
-    <style name="DropDownStyle" parent="@android:style/Widget.ListView.DropDown">
-        <item name="android:textColor">@android:color/black</item>
+    <style name="Button" parent="android:Widget.Button">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="TextView" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="DropDownStyle" parent="android:Widget.ListView.DropDown">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:background">#ff256fd8</item>
     </style>
 
 </resources>

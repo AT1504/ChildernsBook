@@ -2,11 +2,25 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="Settings" >
+    <PreferenceCategory android:title="הגדרות אישיות" >
+
         <EditTextPreference
-            android:title="Password"
-            android:summary="Set Your Password"
-            android:key="prefUserPassword"/>
+            android:title="שם"
+            android:key="@string/pref_user_name"
+            android:summary="@string/pref_user_name_summary"/>
+
+        <ListPreference
+            android:title="מין"
+            android:key="prefSex"
+            android:entries="@array/updateSex"
+            android:entryValues="@array/updateSexValues"
+            />
+
+        <EditTextPreference
+            android:title="גיל"
+            android:key="prefAge"/>
+
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Security Settings" >
@@ -17,13 +31,6 @@
             android:title="Screen Lock" >
         </CheckBoxPreference>
 
-        <ListPreference
-            android:key="prefUpdateFrequency"
-            android:title="Reminder for Updation"
-            android:summary="Set Update Reminder Frequency"
-            android:entries="@array/updateFrequency"
-            android:entryValues="@array/updateFrequencyValues"
-            />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/_AppTheme"
+    style="@style/AppTheme"
     android:id="@+id/m_layout"
     android:gravity="center"
     android:layout_width="match_parent"
@@ -46,19 +46,21 @@
             android:imeOptions="actionDone"
             android:padding="5dp"/>
         <TextView
+            style="@style/TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="או"
             android:textSize="20sp"
             android:gravity="center_vertical"
-            android:padding="5dp"
-            android:textColor="@android:color/black"/>
+            android:padding="5dp"/>
         <Button
+            style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"
             android:padding="5dp"
-            android:text="@string/btn_nekudot_zikui"/>
+            android:text="@string/btn_nekudot_zikui"
+            android:textColor="@color/button_text_color"/>
 
     </LinearLayout>
 
@@ -66,27 +68,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="end"
-        android:weightSum="1"
-        android:layout_weight="0.19">
+        android:gravity="right">
         <AutoCompleteTextView
             android:id="@+id/citys_spinner"
-            android:layout_width="0dp"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:maxLines="1"
             android:completionThreshold="1"
             android:imeOptions="actionDone"
-            style="@style/DropDownStyle"
-            android:layout_weight="0.5" />
+            style="@style/DropDownStyle"/>
         <TextView
+            style="@style/TextView"
+            android:textSize="15sp"
             android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:text="@string/btn_uptowncities"
-            android:layout_weight="0.42"/>
+            android:layout_width="75dp"
+            android:text="@string/btn_uptowncities"/>
     </LinearLayout>
 
     <TextView
+        style="@style/TextView"
         android:layout_margin="10dp"
         android:id="@+id/textUserSettings"
         android:layout_width="match_parent"
@@ -95,11 +96,12 @@
         tools:context=".MainActivity"/>
 
     <Button
+        style="@style/Button"
         android:id="@+id/mas_calc"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
-        android:text="@string/btn_chashev_mas_achnasa" />
+        android:text="@string/btn_chashev_mas_achnasa"
+        android:textColor="@color/button_text_color"/>
 </LinearLayout>
