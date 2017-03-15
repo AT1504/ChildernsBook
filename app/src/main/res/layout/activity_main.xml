@@ -55,6 +55,7 @@
             android:padding="5dp"/>
         <Button
             style="@style/Button"
+            android:id="@+id/btn_nekudot_zikui"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right|center_vertical"

@@ -26,6 +26,9 @@
         <item name="android:textSize">20sp</item>
         <item name="android:background">@color/primary</item>
     </style>
+    <style name="NekudotTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
 
     <style name="TextView" parent="android:Widget.TextView">
         <item name="android:textColor">@color/button_text_color</item>

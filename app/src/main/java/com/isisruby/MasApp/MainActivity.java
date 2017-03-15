@@ -3,9 +3,7 @@ package com.isisruby.MasApp;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -62,6 +59,16 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                                        }
                                    }
         );
+        Button NekudotZikui = (Button) findViewById(R.id.btn_nekudot_zikui);
+        NekudotZikui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, NekudotZikui.class);
+                startActivity(i);
+            }
+        });
+
+
         Button MasCalcBtn;
         MasCalcBtn = (Button)findViewById(R.id.mas_calc);
         MasCalcBtn.setOnClickListener(new View.OnClickListener() {
