@@ -9,17 +9,9 @@
             android:key="@string/pref_user_name"
             android:summary="@string/pref_user_name_summary"/>
 
-        <ListPreference
-            android:title="מין"
-            android:key="prefSex"
-            android:entries="@array/updateSex"
-            android:entryValues="@array/updateSexValues"
-            />
-
         <EditTextPreference
             android:title="גיל"
             android:key="prefAge"/>
-
 
     </PreferenceCategory>
 

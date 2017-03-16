@@ -36,6 +36,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     private final ArrayList<String> CITIES = new ArrayList<>();
     private JSONArray json_arr;
     private double uptownRate=0.0, uptownCeiling=0.0;
+    private boolean uptownSelected = false;
 
     private static final int RESULT_SETTINGS = 1;
 
@@ -244,6 +245,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     // AutocompleteEditText Methods
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        uptownSelected = false;
         JSONObject json_obj;
         String city = parent.getItemAtPosition(position).toString();
         try {
@@ -252,14 +254,15 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 if (json_obj.getString("city_name") == city){
                     uptownRate = json_obj.getDouble("rate_2016");
                     uptownCeiling = json_obj.getDouble("ceiling_2016");
-                    Log.i("uptown:","["+uptownRate+"],["+uptownCeiling+"]");
+                    uptownSelected = true;
                     break;
                 }
             }
+            if (!uptownSelected){
+                    Toast.makeText(MainActivity.this, "לא בחרת עיר או העיר שכתבת לא בפריפריה", Toast.LENGTH_LONG).show();}
         }catch (JSONException e1) {
             e1.printStackTrace();
         }
-        Log.i("json_arr - length", ""+json_arr.length());
     }
 }
 

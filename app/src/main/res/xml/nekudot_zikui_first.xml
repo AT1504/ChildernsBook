@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="חישוב נקודות">
+
+    <PreferenceCategory
+        android:title="נקודות זיכוי לפי גיל, מין ותושבות">
+
+        <CheckBoxPreference
+            android:key="pref_checkbox_citizen"
+            android:title="תושב/ת ישראל"
+            android:summary="תושב = 2.25 נק' זיכוי" />
+
+        <ListPreference
+            android:title="מין"
+            android:key="pref_Sex"
+            android:entries="@array/updateSex"
+            android:entryValues="@array/updateSexValues"
+            android:summary="אישה = 0.5 נק' זיכוי"/>
+
+        <CheckBoxPreference
+            android:key="pref_checkbox_age"
+            android:title="נער/ה בגיל 16-18"
+            android:summary="נער/ה = 1 נק' זיכוי" />
+
+        <CheckBoxPreference
+            android:key="pref_checkbox_unemployed_partner"
+            android:title="נשוי לבת זוג ללא הכנסה"
+            android:summary="1 נק' זיכוי בתנאי שאתה או בת זוגתך בגיל פרישה או עיוור או נכה" />
+
+        <CheckBoxPreference
+            android:key="pref_checkbox_single_parent"
+            android:title="הורה החי בנפרד וילד או פעוט בחזקתו"
+            android:summary="כולל הורה המפרנס את ילדיו שאינם בחזקתו - 1 נק' זיכוי" />
+
+    </PreferenceCategory>
+
+
+
+
+</PreferenceScreen>
