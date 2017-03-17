@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/less_than_a_year"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="הזן את כמות הילדים עד גיל שנה"
+        android:layout_marginRight="5dp" />
+
+    <EditText
+        android:id="@+id/a_year_old"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="הזן את כמות הילדים בני שנה (1)"
+        android:layout_below="@+id/less_than_a_year"/>
+
+    <EditText
+        android:id="@+id/two_year_old"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="הזן את כמות הילדים בני שניים (2)"
+        android:layout_below="@+id/a_year_old"/>
+
+    <EditText
+        android:id="@+id/three_year_old"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="הזן את כמות הילדים בני שלוש (3)"
+        android:layout_below="@+id/two_year_old"/>
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Ok "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/three_year_old"
+        />
+
+</RelativeLayout>

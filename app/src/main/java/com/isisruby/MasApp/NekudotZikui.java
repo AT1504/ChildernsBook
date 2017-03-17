@@ -1,12 +1,20 @@
 package com.isisruby.MasApp;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.CheckBoxPreference;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +90,7 @@ public class NekudotZikui extends AppCompatActivity {
 
         }
     }
+
     public static class NekudotZikuiFragmentSecond extends PreferenceFragmentCompat {
 
         public NekudotZikuiFragmentSecond() {
@@ -95,6 +104,34 @@ public class NekudotZikui extends AppCompatActivity {
 
         @Override
         public void onCreatePreferences(Bundle bundle, String s) {
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(Preference preference) {
+            CheckBoxPreference checkBoxPreference;
+            checkBoxPreference = (CheckBoxPreference) preference;
+
+            if(preference.getKey().equals("pref_checkbox_babys") && checkBoxPreference.isChecked()) {
+
+                // custom dialog
+                final Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_Material_Dialog_Alert);
+                dialog.setContentView(R.layout.custom_dialog_babys);
+                dialog.setTitle("בגין הילדים הפעוטים");
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+
+            return true;
 
         }
     }

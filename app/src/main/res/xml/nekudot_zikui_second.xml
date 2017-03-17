@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="screen_student"
-    android:title="זכאות בגין לימודים">
+    android:key="screen_second">
 
     <PreferenceCategory
-        android:title="בגין הילדים הפעוטים (פעוט - ילד שטרם מלאו לו 4 שנים בשנת המס)">
+        android:title="בגין הילדים הפעוטים">
 
         <CheckBoxPreference
             android:key="pref_checkbox_babys"
             android:title="האם יש לך ילדים פעוטים"
-            android:summary="ילד שטרם מלאו לו 4 שנים"/>
-
-        <!--<ListPreference-->
-        <!--android:key="list_preference"-->
-        <!--android:title="@string/title_list_preference"-->
-        <!--android:summary="@string/summary_list_preference"-->
-        <!--android:entries="@array/entries_list_preference"-->
-        <!--android:entryValues="@array/entryvalues_list_preference"-->
-        <!--android:dialogTitle="@string/dialog_title_list_preference" />-->
+            android:summary="ילדים שטרם מלאו להם 4 שנים"/>
 
     </PreferenceCategory>
 

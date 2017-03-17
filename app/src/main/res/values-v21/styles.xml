@@ -26,7 +26,7 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="NekudotTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="NekudotTheme" parent="Theme.AppCompat.Light">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
